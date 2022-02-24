@@ -282,7 +282,10 @@ def getAllLayers(capabilities: xmltodict.OrderedDict, wmsversion: str):
         rootNodeName = "WMT_MS_Capabilities"
 
     root = capabilities[rootNodeName]["Capability"]["Layer"]
-    nodes = [root]
+    if isinstance(root, list):
+        nodes = [x for x in root]
+    else:
+        nodes = [root]
     flattenedLayers = []
     # traverse the layer tree and
     while len(nodes) > 0:
