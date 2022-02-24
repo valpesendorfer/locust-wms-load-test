@@ -131,12 +131,12 @@ def hasValidGetCapabilitiesResponseType(contentType: str):
     return False
 
 
-def getRandomBoundingBox():
-    north = random.randrange(0, 90)
-    south = north - 90
-    west = random.randrange(-180, 0)
-    east = west + 180
-    return "%s,%s,%s,%s" % (west, south, east, north)
+def getRandomBoundingBox(
+    xmin: int = -170, xmax: int = 170, ymin: int = -60, ymax: int = 60, buffer: int = 20
+):
+    x = random.randrange(xmin, xmax)
+    y = random.randrange(ymin, ymax)
+    return f"{x-buffer},{y-buffer},{x+buffer},{y+buffer}"
 
 
 def getStyles(layer: xmltodict.OrderedDict):
